@@ -1,10 +1,18 @@
-{
-    "content":[
-       {
-          "math":1000
-       },
-       {
-          "eng":15
-       }
-    ]
- }
+[
+   {
+      "subject":"math",
+      "hours":10
+   },
+   {
+      "subject":"phys",
+      "hours":10
+   },
+   {
+      "subject":"chem",
+      "hours":10
+   },
+   {
+      "subject":"autism",
+      "hours":10
+   }
+]

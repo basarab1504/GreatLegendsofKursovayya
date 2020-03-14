@@ -25,7 +25,7 @@ function getCourses()
 
 function getSubjects(course)
 {
-    return [{"subject": "math", "hours": 10}, {"subject": "phys", "hours": 10}, {"subject": "chem", "hours": 10}, {"subject": "autism", "hours": 10}];
+    return JSON.parse(fs.readFileSync('./files/' + course, 'utf8'));
 }
 
 function getResult(query)
@@ -33,7 +33,7 @@ function getResult(query)
     let results = [];
 
     getSubjects(query.sel_course).forEach(element => {
-        results.push({"subject": element.subject, "result": element.hours - query[element.subject] <= 0 ? "Прошел" : "Нахуй пошел"});
+        results.push({"subject": element.subject, "result": element.hours - query[element.subject] <= 0 ? "Прошел" : "Не прошел"});
     });
 
     return results;
