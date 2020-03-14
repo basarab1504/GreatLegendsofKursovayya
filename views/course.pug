@@ -1,0 +1,13 @@
+html
+  head
+    title= title
+  body
+    form(action='/calculate', )
+        input(type='text', name= 'sel_course', value= course)
+        br
+        - var values = subjects;
+        each val in values.length ? values : ['There are no values']
+            label= val.subject
+            input(type='text', name= val.subject)
+            br
+        input(type='submit', value='Send Request')
