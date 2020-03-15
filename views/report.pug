@@ -3,12 +3,12 @@ html
     title= title
   body
     div(align='center')
-        h1= "Академическая разница"
+        h3= "Пожалуйста, ликваидируйте следующие задолженности:"
         form(action='/', )
             - var values = subjects;
             each val in values.length ? values : ['There are no values']
                 label= val.subject + ": "
-                label= val.result
+                label= val.result + " часов"
                 br
             br
             input(type='submit', value='На главную')
