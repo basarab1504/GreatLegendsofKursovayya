@@ -2,12 +2,13 @@ html
   head
     title= title
   body
-    h1= course
-    br
-    form(action='/', )
-        - var values = subjects;
-        each val in values.length ? values : ['There are no values']
-            label= val.subject
-            label= val.result
+    div(align='center')
+        h1= "Академическая разница"
+        form(action='/', )
+            - var values = subjects;
+            each val in values.length ? values : ['There are no values']
+                label= val.subject + ": "
+                label= val.result
+                br
             br
-        input(type='submit', value='Send Request')
+            input(type='submit', value='На главную')
