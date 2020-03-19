@@ -1,14 +1,15 @@
 html
   head
     title= title
+    style
+      include ./style.css
   body
-    div(align='center')
-        h1= "Академическая разница"
-        form(action='/', )
-            - var values = subjects;
-            each val in values.length ? values : ['There are no values']
-                label= val.subject + ": "
-                label= val.result
-                br
-            br
-            input(type='submit', value='На главную')
+    div
+      .center(align='center')
+          h1= "Академическая разница"
+          form(action='/')
+              - var values = subjects;
+              ul
+                each val in values
+                    li= val.subject + ": " + val.result
+              input(type='submit', value='На главную')
