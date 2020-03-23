@@ -1,8 +1,11 @@
 html
   head
     title= title
+    style
+      include ./style.css
   body
-    div(align='center')
+    div
+      .center(align='center')
         h3= "Пожалуйста, ликваидируйте следующие задолженности:"
         form(action='/', )
             - var values = subjects;

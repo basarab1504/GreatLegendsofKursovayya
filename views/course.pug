@@ -1,9 +1,12 @@
 html
   head
     title= title
+    style
+      include ./style.css
   body
-    div(align='center')
-        form(action='/calculate', )
+    div
+      .center(align='center')
+          form(action='/calculate', )
             input(type='hidden', name= 'sel_course', value= course)
             - var values = subjects;
             each val in values.length ? values : ['There are no values']
