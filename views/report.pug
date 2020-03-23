@@ -6,12 +6,15 @@ html
   body
     div
       .center(align='center')
-        h3= "Пожалуйста, ликваидируйте следующие задолженности:"
-        form(action='/', )
-            - var values = subjects;
+        - var values = subjects;
+        form(action='/')
+          if values.length > 0
+            h3= "Пожалуйста, ликваидируйте следующие задолженности:"
             each val in values.length ? values : ['There are no values']
+              .reportElem
                 label= val.subject + ": "
                 label= val.result + " часов"
                 br
-            br
-            input(type='submit', value='На главную')
+          else
+            h3= "У Вас нет задолжностей!"
+          input(type='submit' value='На главную')

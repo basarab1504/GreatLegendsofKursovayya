@@ -1,3 +1,12 @@
+* {
+  font-size: 100%;
+  font-family: Arial;
+}
+
+.reportElem {
+  padding: 5px; /* Поля вокруг текста */
+}
+
 input[type=text], select {
   width: 100%;
   padding: 12px 20px;
