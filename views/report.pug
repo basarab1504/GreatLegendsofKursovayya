@@ -6,10 +6,12 @@ html
   body
     div
       .center(align='center')
-          h1= "Академическая разница"
-          form(action='/')
-              - var values = subjects;
-              ul
-                each val in values
-                    li= val.subject + ": " + val.result
-              input(type='submit', value='На главную')
+        h3= "Пожалуйста, ликваидируйте следующие задолженности:"
+        form(action='/', )
+            - var values = subjects;
+            each val in values.length ? values : ['There are no values']
+                label= val.subject + ": "
+                label= val.result + " часов"
+                br
+            br
+            input(type='submit', value='На главную')

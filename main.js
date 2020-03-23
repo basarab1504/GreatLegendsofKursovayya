@@ -1,5 +1,6 @@
 const express = require("express");
 const fs = require('fs');
+const path = require('path');
 const app = express();
 
 app.set('view engine', 'pug');
@@ -18,9 +19,14 @@ app.get('/calculate', function (req, res) {
 
 app.listen(3000);
 
-function getCourses() {
-    return fs.readdirSync('./files');
-}
+function getCourses(callback)
+{
+    let names = [];
+    fs.readdirSync('./files').forEach((item, i) => {
+        names.push(path.parse(item).name)
+    });
+    return names;
+    //return fs.readdirSync('./files', "utf8", true);
 
 function getSubjects(course) {
     return JSON.parse(fs.readFileSync('./files/' + course, 'utf8'));
@@ -30,7 +36,9 @@ function getResult(query) {
     let results = [];
 
     getSubjects(query.sel_course).forEach(element => {
-        results.push({ "subject": element.subject, "result": element.hours - query[element.subject] <= 0 ? "Прошел" : "Не прошел" });
+        if (element.hours - query[element.subject] > 0) {
+            results.push({"subject": element.subject, "result": element.hours - query[element.subject]});
+        }
     });
 
     return results;
