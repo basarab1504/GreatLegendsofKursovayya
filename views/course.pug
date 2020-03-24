@@ -6,13 +6,10 @@ html
   body
     div
       .center(align='center')
-          form(action='/calculate', )
-            input(type='hidden', name= 'sel_course', value= course)
-            - var values = subjects;
-            each val in values.length ? values : ['There are no values']
-                label= val.subject + " "
-                div(align='center')
-                    input(type='text', name= val.subject)
-
-            br
-            input(type='submit', value='Рассчитать')
+        form(action='/calculate', )
+          input(type='hidden', name= 'sel_course', value= course)
+          - var values = subjects;
+          each val in values.length ? values : ['There are no values']
+            label= val.subject + " "
+              input(type='text', name= val.subject)
+          input(type='submit' value='Рассчитать')
