@@ -35,7 +35,8 @@ function getSubjects(course) {
     var worksheet = workbook.Sheets["План учебного процесса"];
     i = 10;
     name = worksheet['B' + i];
-    val = worksheet['H' + i]
+    val = worksheet['H' + i];
+
     while (name) {
         var subj = {
             subject: name.v,
