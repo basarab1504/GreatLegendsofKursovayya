@@ -2,6 +2,7 @@ const express = require("express");
 const fs = require('fs');
 const path = require('path');
 const app = express();
+const XLSX = require('xlsx');
 
 app.set('view engine', 'pug');
 
@@ -29,7 +30,24 @@ function getCourses(callback) {
 }
 
 function getSubjects(course) {
-    return JSON.parse(fs.readFileSync('./files/' + course, 'utf8'));
+    var subjects = [];
+    var workbook = XLSX.readFile('./files/' + course);
+    var worksheet = workbook.Sheets["План учебного процесса"];
+    i = 10;
+    name = worksheet['B' + i];
+    val = worksheet['H' + i]
+    while (name) {
+        var subj = {
+            subject: name.v,
+            hours: val.v
+        };
+        subjects.push(subj);
+        i = i + 1;
+        name = worksheet['B' + i];
+        val = worksheet['H' + i];
+    }
+    return subjects;
+    //return JSON.parse(fs.readFileSync('./files/' + course, 'utf8'));
 }
 
 function getResult(query) {
