@@ -3,7 +3,7 @@
   "lockfileVersion": 1,
   "scripts": {
   	"start": "node main.js"
-	}
+	},
   "dependencies": {
     "@types/babel-types": {
       "version": "7.0.7",
