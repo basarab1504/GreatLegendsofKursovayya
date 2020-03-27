@@ -18,7 +18,7 @@ app.get('/calculate', function (req, res) {
     res.render('report', { course: req.query.sel_course, subjects: getResult(req.query) });
 });
 
-app.listen(3000);
+app.listen(process.env.PORT || 5000);
 
 function getCourses(callback) {
     let names = [];
