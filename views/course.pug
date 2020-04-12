@@ -8,6 +8,7 @@ html
       .center(align='center')
         form(action='/calculate', )
           input(type='hidden', name= 'sel_course', value= course)
+          input(type='hidden', name= "sel_fio", value= fio)
           - var values = subjects;
           each val in values.length ? values : ['There are no values']
             label= val.subject + " "

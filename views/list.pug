@@ -1,0 +1,15 @@
+html
+  head
+    title= title
+    style
+      include ./style.css
+  body
+    div
+      .center(align='center')
+        form(action='/show')
+          - var values = list;
+          each val in values.length ? values : ['There are no values']
+            input(type='submit', name= 'sel_course', value= val)
+            br
+        form(action='/')
+          input(type='submit' value='На главную')
