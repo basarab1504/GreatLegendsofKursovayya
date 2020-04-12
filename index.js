@@ -11,9 +11,11 @@ app.get('/', function (req, res) {
 });
 
 app.get('/course', function (req, res, next) {
-    res.render('course', { course: req.query.sel_course,
+    res.render('course', {
+        course: req.query.sel_course,
         fio: req.query.sel_f + " " + req.query.sel_i + " " + req.query.sel_o,
-        subjects: getSubjects(req.query.sel_course) });
+        subjects: getSubjects(req.query.sel_course)
+    });
 });
 
 app.get('/list', function (req, res, next) {
@@ -21,13 +23,17 @@ app.get('/list', function (req, res, next) {
 });
 
 app.get('/calculate', function (req, res) {
-    res.render('report', { course: req.query.sel_course, fio: req.query.sel_fio,
-        subjects: getResult(req.query) });
+    res.render('report', {
+        course: req.query.sel_course, fio: req.query.sel_fio,
+        subjects: getResult(req.query)
+    });
 });
 
 app.get('/show', function (req, res) {
-    res.render('show', { course: req.query.sel_course, fio: splitName(req.query.sel_course),
-        subjects: readResult(req.query) });
+    res.render('show', {
+        course: req.query.sel_course, fio: splitName(req.query.sel_course),
+        subjects: readResult(req.query)
+    });
 });
 
 app.listen(3000);
@@ -80,7 +86,7 @@ function getResult(query) {
         }
     });
     let json = JSON.stringify(results);
-    fs.writeFile('./data/' + query.sel_fio + ', ' + query.sel_course + '.json', json, function(err) {
+    fs.writeFile('./data/' + query.sel_fio + ', ' + query.sel_course + '.json', json, function (err) {
         {
             if (err) {
                 console.log(err);
