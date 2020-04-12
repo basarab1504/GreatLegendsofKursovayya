@@ -14,11 +14,11 @@ html
               label="label"
               option(value=val)= val
           label= "Фамилия"
-            input(type='text', name= "sel_f")
+            input(type='text', required='',name= "sel_f")
           label= "Имя"
-            input(type='text', name= "sel_i")
+            input(type='text', required='', name= "sel_i")
           label= "Отчество"
-            input(type='text', name= "sel_o")
+            input(type='text', required='', name= "sel_o")
           input(type='submit' value='Далее')
         form(action='/list')
           input(type='submit' value='Список студентов')
