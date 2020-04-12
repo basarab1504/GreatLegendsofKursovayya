@@ -30,7 +30,7 @@ app.get('/show', function (req, res) {
         subjects: readResult(req.query) });
 });
 
-app.listen(process.env.PORT || 5000);
+app.listen(process.env.PORT || 3000);
 
 function splitName(str) {
     return str.split(', ')[0];
