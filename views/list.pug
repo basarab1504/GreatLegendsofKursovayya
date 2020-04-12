@@ -9,7 +9,7 @@ html
         form(action='/show')
           - var values = list;
           each val in values.length ? values : ['There are no values']
-            input(type='number', name= 'sel_course', value= val)
+            input(type='text', name= 'sel_course', value= val)
             br
         form(action='/')
           input(type='submit' value='На главную')
