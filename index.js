@@ -30,7 +30,7 @@ app.get('/show', function (req, res) {
         subjects: readResult(req.query) });
 });
 
-app.listen(process.env.PORT || 3000);
+app.listen(3000);
 
 function splitName(str) {
     return str.split(', ')[0];
@@ -51,8 +51,7 @@ function getSubjects(course) {
     var worksheet = workbook.Sheets["План учебного процесса"];
     i = 10;
     name = worksheet['B' + i];
-    val = worksheet['H' + i];
-
+    val = worksheet['H' + i]
     while (name) {
         var subj = {
             subject: name.v,
