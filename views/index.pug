@@ -8,8 +8,17 @@ html
       .center(align='center')
         form(action='/course')
           - var values = courses;
+          label="Специальность"
           select(name='sel_course')
             each val in values.length ? values : ['There are no values']
               label="label"
-              option(value=val+".xlsx")= val
+              option(value=val)= val
+          label= "Фамилия"
+            input(type='text', name= "sel_f")
+          label= "Имя"
+            input(type='text', name= "sel_i")
+          label= "Отчество"
+            input(type='text', name= "sel_o")
           input(type='submit' value='Далее')
+        form(action='/list')
+          input(type='submit' value='Список студентов')

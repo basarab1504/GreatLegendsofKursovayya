@@ -7,22 +7,38 @@ const XLSX = require('xlsx');
 app.set('view engine', 'pug');
 
 app.get('/', function (req, res) {
-    res.render('index', { courses: getCourses() });
+    res.render('index', { courses: getNames('./files') });
 });
 
 app.get('/course', function (req, res, next) {
-    res.render('course', { course: req.query.sel_course, subjects: getSubjects(req.query.sel_course) });
+    res.render('course', { course: req.query.sel_course,
+        fio: req.query.sel_f + " " + req.query.sel_i + " " + req.query.sel_o,
+        subjects: getSubjects(req.query.sel_course) });
+});
+
+app.get('/list', function (req, res, next) {
+    res.render('list', { list: getList() });
 });
 
 app.get('/calculate', function (req, res) {
-    res.render('report', { course: req.query.sel_course, subjects: getResult(req.query) });
+    res.render('report', { course: req.query.sel_course, fio: req.query.sel_fio,
+        subjects: getResult(req.query) });
+});
+
+app.get('/show', function (req, res) {
+    res.render('show', { course: req.query.sel_course, fio: splitName(req.query.sel_course),
+        subjects: readResult(req.query) });
 });
 
 app.listen(process.env.PORT || 5000);
 
-function getCourses(callback) {
+function splitName(str) {
+    return str.split(', ')[0];
+}
+
+function getNames(dir) {
     let names = [];
-    fs.readdirSync('./files').forEach((item, i) => {
+    fs.readdirSync(dir).forEach((item, i) => {
         names.push(path.parse(item).name)
     });
     return names;
@@ -31,7 +47,7 @@ function getCourses(callback) {
 
 function getSubjects(course) {
     var subjects = [];
-    var workbook = XLSX.readFile('./files/' + course);
+    var workbook = XLSX.readFile('./files/' + course + ".xlsx");
     var worksheet = workbook.Sheets["План учебного процесса"];
     i = 10;
     name = worksheet['B' + i];
@@ -51,14 +67,30 @@ function getSubjects(course) {
     //return JSON.parse(fs.readFileSync('./files/' + course, 'utf8'));
 }
 
+function getList(course) {
+    var names = getNames('./data');
+    return names;
+    //return JSON.parse(fs.readFileSync('./files/' + course, 'utf8'));
+}
+
 function getResult(query) {
     let results = [];
-
     getSubjects(query.sel_course).forEach(element => {
         if (element.hours - query[element.subject] > 0) {
             results.push({ "subject": element.subject, "result": element.hours - query[element.subject] });
         }
     });
-
+    let json = JSON.stringify(results);
+    fs.writeFile('./data/' + query.sel_fio + ', ' + query.sel_course + '.json', json, function(err) {
+        {
+            if (err) {
+                console.log(err);
+            }
+        }
+    });
     return results;
+}
+
+function readResult(query) {
+    return JSON.parse(fs.readFileSync('./data/' + query.sel_course + '.json', 'utf8'));;
 }
