@@ -12,5 +12,6 @@ html
           - var values = subjects;
           each val in values.length ? values : ['There are no values']
             label= val.subject + " "
-              input(type='text', name= val.subject)
+              input(type='number', name= val.subject, min="0", value=0)
+              br
           input(type='submit' value='Рассчитать')

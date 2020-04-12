@@ -14,11 +14,11 @@ html
               label="label"
               option(value=val)= val
           label= "Фамилия"
-            input(type='text', name= "sel_f")
+            input(type='text', name= "sel_f", pattern="[А-Я][а-я]{1,30}", required=''. oninvalid="setCustomValidity('Пожалуйста, введите фамилию кириллицей')")
           label= "Имя"
-            input(type='text', name= "sel_i")
+            input(type='text', name= "sel_i",  pattern="[А-Я][а-я]{1,30}", required='', oninvalid="setCustomValidity('Пожалуйста, введите имя кириллицей')")
           label= "Отчество"
-            input(type='text', name= "sel_o")
+            input(type='text', name= "sel_o", pattern="[А-Я][а-я]{1,30}" ,required='', oninvalid="setCustomValidity('Пожалуйста, введите отчество кириллицей')")
           input(type='submit' value='Далее')
         form(action='/list')
           input(type='submit' value='Список студентов')
